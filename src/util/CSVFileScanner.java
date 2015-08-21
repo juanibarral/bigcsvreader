@@ -24,11 +24,17 @@ public class CSVFileScanner {
 		FileInputStream inputStream = null;
 		String line = "";
 		Scanner sc = null;
+		boolean lastLine = false;
 		try {
 			inputStream = new FileInputStream(filepath);
 			sc = new Scanner(inputStream, "UTF-8");
 			while (sc.hasNextLine()) {
 				line = sc.nextLine();
+				if(!sc.hasNextLine())
+				{
+					lastLine = true;
+					func.setLastLine(lastLine);
+				}
 				if(!avoidFirst)
 				{
 					func.setLine(line);
