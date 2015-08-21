@@ -18,8 +18,18 @@ try {
 	e.printStackTrace();
 }
 ```
-####
-##### Arguments
+#### CSVFileScanner
+Scans a big CSV file and let the LineCallableFunction process each line of the file. 
+##### Constructor Arguments
+* filepath: String with the filepath to read
+* avoidFirst: tells the method to skip the first line that is usually the headers.
+* callableFunction: Function that will process the line
+ 
+#### LineCallableFunction
+Class that manage the file one line at a time. When a new line is read, it will call de "call" function
+##### Constructor Arguments
+* withFrame: It will launch a frame that can be accessed each time a line is read. 
+
 ### Utils Usage
 There are two utilitary functions in the library
 
