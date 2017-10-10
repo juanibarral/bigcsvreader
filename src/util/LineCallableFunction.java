@@ -12,6 +12,7 @@ import java.util.concurrent.Callable;
 public class LineCallableFunction implements Callable<Void> {
 
 	protected String line;
+	protected String firstLine; 
 	protected int lineCounter;
 	protected FrameLogger logger;
 	protected boolean goOn = true;
@@ -46,10 +47,12 @@ public class LineCallableFunction implements Callable<Void> {
 	{
 		return goOn;
 	}
-	/**
-	 * Sets if the line being read is the last one
-	 * @param b if the line is the last one
-	 */
+	
+	public void setFirstLine(String b)
+	{
+		firstLine = b;
+	}
+	
 	public void setLastLine(boolean b)
 	{
 		lastLine = b;

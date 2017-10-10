@@ -11,6 +11,7 @@ import java.util.Scanner;
  */
 public class CSVFileScanner {
 
+	protected boolean stop = false;
 	/**
 	 * Constructor <br>
 	 * Creates a CSV reader
@@ -23,13 +24,19 @@ public class CSVFileScanner {
 	{
 		FileInputStream inputStream = null;
 		String line = "";
-		Scanner sc = null;
+		boolean isFirst = true;
 		boolean lastLine = false;
+		Scanner sc = null;
 		try {
 			inputStream = new FileInputStream(filepath);
 			sc = new Scanner(inputStream, "UTF-8");
-			while (sc.hasNextLine()) {
+			while (sc.hasNextLine() && func.goOn) {
 				line = sc.nextLine();
+				if(isFirst)
+				{
+					func.setFirstLine(line);
+					isFirst = false;
+				}
 				if(!sc.hasNextLine())
 				{
 					lastLine = true;
@@ -56,8 +63,9 @@ public class CSVFileScanner {
 			if (sc != null) {
 				sc.close();
 			}
-		}
-		
+			if(func.logger != null)
+				func.logger.dispose();
+		}	
 	}
 	
 	public static void main(String[] args)
